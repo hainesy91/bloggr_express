@@ -5,23 +5,24 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var server = http.createServer(app);
 var morgan = require('morgan');
+var port = process.env.PORT || 3000;
+var db = require('./models');
+
+app.set('views', './views');
+app.set('view engine', 'ejs');
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
-app.set('views', './views');
-app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
-var db = require('./models');
-// app.use(bodyParser.urlencoded({ extended: true}));
+//When extend is true you can parse json data from the server to the client.         ,
+app.use(bodyParser.urlencoded({ extended: true}));
 
 app.get('/', function(req, res) {
   console.log("inside get route")
 
   res.render('index');
 });
-
-var port = process.env.PORT || 3000;
 
 app.get("/blogs", function(req, res) {
   console.log("inside get blogs")

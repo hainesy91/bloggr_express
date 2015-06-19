@@ -11,19 +11,28 @@ var BlogSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
+  author: {
+    type: String,
+    default: '',
+    comments: [CommentSchema]
+  }
 });
 
 var CommentSchema = new mongoose.Schema({
-  comment:{
+  author: {
+    type: String,
+    default: ''
+  },
+  comment: {
     type: String,
     default: ''
   }
-})
+});
 
 //Creating a mongoose Blog model to allow us to instantiate new blog documents;
 var Blog = mongoose.model('Blog', BlogSchema)
 var Comment = mongoose.model('Comment', CommentSchema)
 
-//Making blog object available to other 
+//Exporting the blog and comment models so we can access them in server.js
 module.exports.Blog = Blog;
 module.exports.Comment = Comment;
