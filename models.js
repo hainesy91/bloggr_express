@@ -3,7 +3,7 @@ mongoose.connect("mongodb://localhost/blogdatabase");
 
 //Defining the blueprint for blog documents
 var BlogSchema = new mongoose.Schema({
-  name: {
+  title: {
     type: String,
     default: ''
   },
