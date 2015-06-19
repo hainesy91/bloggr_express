@@ -10,3 +10,10 @@ db.Blog.create({
   console.log('Blog created');
   console.log(blog);
 });
+
+db.Comment.create({
+  comment: 'That sounds really tasty!'
+}), function(err, comment) {
+  console.log('Comment added');
+  console.log(comment);
+};
